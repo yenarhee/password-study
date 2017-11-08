@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
+{% block header %}{% trans "Login" %}{% endblock %}
+{% block content %}
+
+<p>Noch nicht registriert? Dann bitte melden Sie sich <a href="{% url 'account_signup' %}">hier</a> an.</p>
+
+<form class="login" id="login_form" method="post" action="{% url 'account_login' %}" onpaste="return false">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" onclick="return send_keystroke_logs();">{% trans "Login" %}</button>
+    <p><a href="{% url 'account_password_request' %}">{% trans "Passwort beantragen" %}</a></p>
+</form>
+
+<small><b>Hinweis</b>: Mehrmalige Log-ins innerhalb 1 Stunde sind als 1 Login gerechnet.
+    Das heißt: wenn Sie sich um 23.59 Uhr einloggt haben,
+    wird der nächste Login erst ab 01.00 Uhr des Folgetages gezählt.</p>
+</small>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+var keyHistory = '';
+var lastClick = new Date().getTime();
+var intervalList = [];
+
+// special keys
+document.getElementById('id_password').onkeydown = function(e) {
+    if (!e) e = window.event;
+    var keyCode = e.keyCode || e.which;
+    var key;
+    switch (keyCode) {
+        case 8:
+            key = 'BACKSPACE';
+            break;
+        case 16:
+            key = 'SHIFT';
+            break;
+        case 17:
+            key = 'CONTROL';
+            break;
+        case 18:
+            key = 'ALT';
+            break;
+        case 20:
+            key = 'CAPSLOCK';
+            break;
+        default:
+            key = '';
+    }
+    keyHistory += key;
+    // return true;
+}
+
+// normal keys
+document.getElementById('id_password').onkeypress = function(e) {
+    var d = new Date();
+    var t = d.getTime();
+    intervalList.push(t - lastClick);    // in ms
+    lastClick = t;
+    if (!e) e = window.event;
+    var keyCode = e.keyCode || e.which;
+    var key;
+    key = String.fromCharCode(keyCode);
+    keyHistory += key;
+    // return true;
+}
+
+/*
+var password_field = document.getElementById('id_password')
+password_field.addEventListener("textInput", function(e) {
+    var d = new Date();
+    var t = d.getTime();
+    intervalList.push(t - lastClick);    // in ms
+    lastClick = t;
+    var key = e.data;
+    keyHistory += key;
+    // return true;
+}); */
+
+
+// Send keystroke logs to server
+function send_keystroke_logs() {
+    document.getElementById('id_keystroke').value = keyHistory;
+    document.getElementById('id_keystroke_intervals').value = intervalList;
+    return true;
+}
+
+</script>
+
+{% endblock %}

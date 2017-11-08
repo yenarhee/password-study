@@ -1,0 +1,15 @@
+{% extends "simple_base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Feedback" %}{% endblock %}
+{% block header %}{% trans "Feedback" %}{% endblock %}
+
+{% block content %}
+<form class="feedback" id="feedback_form" method="post" action="{% url 'account_feedback' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" onclick="return send_user_email();">{% trans "Senden" %}</button>
+</form>
+
+{% endblock %}

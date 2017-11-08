@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "E-mail Bestätigt" %}{% endblock %}
+{% block header %}{% trans "Ihre Email-Adresse wurde bestätigt" %}{% endblock %}
+
+{% block content %}
+<p>Wir haben Ihre Email-Adresse bestätigt. In Kürze erhalten Sie das Passwort zu Ihrem Account per
+    Email. Sie können sich <a href="{% url 'account_login' %}">hier</a> einloggen.</p>
+<p>Alternativ können Sie <a href="{% url 'account_password_request' %}">hier</a> das Passwort beantragen.
+</p>
+
+{% endblock %}

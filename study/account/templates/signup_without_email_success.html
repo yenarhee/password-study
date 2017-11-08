@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Anmeldung Bestätigt" %}{% endblock %}
+{% block header %}{% trans "Ihre Anmeldung ist erfolgreich abgeschlossen" %}{% endblock %}
+
+{% block content %}
+<p>Sie haben bei uns ohne Email-Adresse registriert. Damit haben Sie <b>keine Möglichkeit</b>, Ihr Passwort wieder zu bekommen.
+    Bitte merken Sie es unbedingt.</p>
+<p>Benutzername: <b style="font-family: monospace">{{ username }}</b></p>
+<p>Passwort: <b style="font-family: monospace">{{ password }}</b></p>
+<p>Sie können sich <a href="{% url 'account_login' %}">hier</a> einloggen.</p>
+
+
+{% endblock %}

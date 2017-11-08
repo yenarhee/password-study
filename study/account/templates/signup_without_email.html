@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Registrieren ohne Email-Adresse" %}{% endblock %}
+{% block header %}{% trans "Registrieren ohne Email-Adresse" %}{% endblock %}
+
+{% block content %}
+<p>Sie können sich auch ohne Angabe einer Email-Adresse registrieren.
+    Beachten Sie bitte, dass Sie dann leider nicht an der Verlosung teilnehmen können.</p>
+<p>Haben Sie bereits einen Account? Dann bitte <a href="{% url 'account_login' %}">loggen Sie sich ein</a>.</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup_without_email' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Das Passwort zu Ihrem Account sehen Sie sofort nach der Registrierung.</p>
+    <p><b>Hinweis</b>: Wenn Sie sich ohne Email-Adresse registrieren, können wir Ihnen Ihr Passwort nicht erneut mitteilen sollten Sie es vergessen.</p>
+    <button type="submit">{% trans "Anmelden" %}</button>
+</form>
+
+{% endblock %}

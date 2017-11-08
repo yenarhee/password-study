@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}Mein Account{% endblock %}
+{% block header %}Mein Account{% endblock %}
+
+{% block content %}
+
+{% if user_profile.login_days >= 5 %}
+<p><table border="2" cellpadding="10">
+    <tr><td>
+    <p><bold>Herzlichen Glückwunsch!</bold></p>
+    <p>Sie haben die Studie erfolgreich abgeschlossen und nehmen automatisch an einer Verlosung teil.
+    </p>
+    <p>Wir werden uns freuen, wenn Sie uns Ihre Meinung zur Studie mitteilen.</p>
+    <p><a href="{% url 'account_feedback' %}" target="_blank"
+          onclick="window.open('{% url 'account_feedback' %}', 'newwindow', 'width=300, height=400'); return false;">Feedback</a>
+    </p>
+    </td></tr>
+</table></p>
+{% else %}
+<p><table border="2" cellpadding="10">
+    <tr><td>
+    <p>Wir werden uns freuen, wenn Sie uns Ihre Meinung zur Studie mitteilen.</p>
+    <p><a href="{% url 'account_feedback' %}" target="_blank"
+          onclick="window.open('{% url 'account_feedback' %}', 'newwindow', 'width=300, height=400'); return false;">Feedback</a>
+    </p>
+    </td></tr>
+</table></p>
+{% endif %}
+
+<p>Vielen Dank für Ihre Teilnahme, {{ user.username }}.</p>
+<p>Ihre letzte Passworteingabe hat {{ user_profile.last_timing }}s gedauert.</p>
+<p>Sie haben sich bisher für {{ user_profile.login_days }} Tag(e) eingeloggt.</p>
+<p>Wollen Sie wissen, wie schnell Sie Ihr Passwort eingetippt haben? Dann schauen Sie die <a href="{% url 'ranking' %}">Rangliste</a>!
+</p>
+
+<a href="{% url 'logout' %}?next={% url 'account_login' %}">{% trans "Abmelden" %}</a>
+{% endblock %}

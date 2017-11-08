@@ -1,0 +1,11 @@
+{% load i18n %}{% autoescape off %}{% blocktrans %}Liebe/r Teilnehmer/in,
+
+diese Email ist eine Erinnerung für Sie, heute auf unserer Studie-Seite einzuloggen.
+
+Sie haben sich bei uns für {{ login_days }} Tag(e) eingeloggt.
+Link zur Login-Seite: {{ login_page }}
+
+Sie müssen sich für fünf Tage einloggen, um an der Verlosung teilzunehmen.
+
+Viel Spaß weiterhin und vielen Dank für Ihre Teilnahme!
+{% endblocktrans %}{% endautoescape %}

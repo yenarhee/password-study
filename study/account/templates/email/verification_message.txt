@@ -1,0 +1,8 @@
+{% load i18n %}{% autoescape off %}{% blocktrans %}Herzlich Willkommen bei unserer Studie.
+
+Wir haben Ihre Anfrage zur Anmeldung erhalten. Um die Anmeldung abzuschließen, müssen Sie die Anmeldung bestätigen: {{ activate_url }}
+
+Nach der Bestätigung erhalten Sie das Passwort zu Ihrem Account per Email.
+
+Wenn Sie sich nicht bei uns registriert haben, bitte ignorieren Sie diese Email oder informieren Sie uns.
+{% endblocktrans %}{% endautoescape %}

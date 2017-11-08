@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}Rangliste{% endblock %}
+{% block header %}Rangliste{% endblock %}
+
+
+
+{% block content %}
+<p>Sie können ein Pseudonym festlegen, unter dem Ihre Bestzeit in der Rangliste auftaucht.
+    Um Ihr Pseudonym wieder zu entfernen, lassen Sie einfach das Feld leer (Einträge ohne Pseudonym sind für andere nicht sichtbar).
+</p>
+<form class="ranking" id="ranking_name_form" method="post" action="{% url 'ranking' %}">
+    <p>{% csrf_token %}{{ form }}
+    <button type="submit">{% trans "Ändern" %}</button></p>
+</form>
+
+<p>
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Rang</th>
+        <th>Name</th>
+        <th>Bester Rekord</th>
+    </tr>
+    {% for item in ranking %}
+    {% if item.best_timing %}
+    {% if item == user_profile %}
+    <tr style="background-color:lightblue">
+        <td>{{ forloop.counter }}</td>
+        <td><b>{% if item.pseudonym %}{{ item.pseudonym }}
+                {% else %}{{ item.user.username }}</b>{% endif %}</td>
+        <td>{{ item.best_timing }}s</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{% if item.pseudonym %}{{ item.pseudonym }}
+            {% else %}***{% endif %}</td>
+        <td>{{ item.best_timing }}s</td>
+    </tr>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% if user_profile and user_profile not in ranking %}
+    <tr>
+        <td></td>
+        <td>{{ item.user.username }}</td>
+        <td>{{ user_profile.best_timing }}</td>
+    </tr>
+    {% endif %}
+</table>
+</p>
+
+<p><b>Hinweis</b>: Die Rangliste ist nur informativ und hat <b>keinen</b> Einfluss auf Ihre Gewinnchance.</p>
+{% endblock %}

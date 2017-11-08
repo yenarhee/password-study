@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Willkommen" %}{% endblock %}
+
+{% block header %}{% trans "Willkommen zur Studie!" %}{% endblock %}
+
+{% block content %}
+<h2>Worum geht es?</h2>
+<p>Wir möchten die Passwortnutzung für alle Internetnutzer einfacher und schneller machen.
+    Dazu studieren wir in unserem Forschungsprojekt die Eingabe und Benutzbarkeit von <b>zufallsgenerierten Passwörtern</b>.</p>
+
+<h2>Wie kann ich teilnehmen?</h2>
+<ol>
+    <li>Registrieren Sie sich bitte <a href="{% url 'account_signup' %}">hier</a> für die Teilnahme.</li>
+    <li>Nach der Registrierung erhalten Sie ein zufälliges Passwort von uns.</li>
+    <li>Loggen Sie sich mit diesem Passwort täglich an fünf Tagen auf dieser Seite ein.</li>
+    <li>Nach Abschluss der Studie nehmen Sie automatisch an einer Verlosung Teil.</li>
+</ol>
+<p>Die Studie läuft bis zum 06.02.2017 inklusiv.</p>
+
+<h2>Was kann ich gewinnen?</h2>
+<p>Unter allen Teilnehmern, die sich bis zum Ende der Studie an fünf Tagen eingeloggt haben,
+    verlosen wir zufällig fünf Geschenkgutscheine für Amazon im Wert von je 20€.
+    Die Gewinner bekommen ihre Gutscheincodes per Email zugesendet.</p>
+
+<h2>Teilnahmebedingungen</h2>
+<ol>
+    <li>Mit der Registrierung zur Teilnahme erklären Sie sich mit der Speicherung der u.g. Daten einverstanden. </li>
+    <li>Der Rechtsweg ist ausgeschlossen.</li>
+    <li>Jede/r Teilnehmer/in darf nur ein Mal teilnehmen.</li>
+</ol>
+
+<h2>Datenschutzhinweise</h2>
+<p>Bis zum Abschluss der Studie speichern wir folgende Daten von Ihnen:
+<ul>
+    <li>Ihre Email-Adresse </li>
+    <li>Metriken zur Passworteingabe</li>
+</ul>
+</p>
+<p>Nach Abschluss der Studie und Benachrichtigung der Gewinner löschen wir Ihre Email-Adresse.
+    Zu keinem Zeitpunkt geben wir Ihre Email-Adresse an Dritte weiter.</p>
+
+<p>Damit Sie auf unserer Seite eingeloggt bleiben können, verwenden wir Session-Cookies.
+    Session-Cookies werden gelöscht, wenn Sie die Sitzung beenden.
+    Die meisten Browser sind so eingestellt, dass alle Cookies akzeptiert werden, ohne die Benutzer zu fragen.
+    Wenn Sie die Login-Funktion auf unserer Studieseite nutzen möchten, sollten Sie Ihren Browser so einstellen,
+    dass Session-Cookies akzeptiert werden.</p>
+
+<p>Sollten Sie noch Fragen haben, schreiben Sie uns bitte eine Email.</p>
+
+{% endblock %}

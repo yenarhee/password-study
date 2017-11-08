@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Registrieren" %}{% endblock %}
+{% block header %}{% trans "Registrieren" %}{% endblock %}
+
+{% block content %}
+<p>Haben Sie bereits einen Account? Dann bitte <a href="{% url 'account_login' %}">loggen Sie sich ein</a>.</p>
+<p>Um sich ohne Email-Adresse registrieren, klicken Sie bitte <a href="{% url 'account_signup_without_email' %}">hier</a>.</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Das Passwort zu Ihrem Account erhalten Sie nach Bestätigung Ihrer Email-Adresse.</p>
+    <button type="submit">{% trans "Anmelden" %}</button>
+</form>
+
+{% endblock %}
